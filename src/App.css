@@ -1,0 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+:root {
+  --Moderate-blue: hsl(238, 40%, 52%);
+  --Soft-Red: hsl(358, 79%, 66%);
+  --Light-grayish-blue: hsl(239, 57%, 85%);
+  --Pale-red: hsl(357, 100%, 86%);
+
+  --Darkblue: hsl(212, 24%, 26%);
+  --GrayishBlue: hsl(211, 10%, 45%);
+  --Lightgray: hsl(223, 19%, 93%);
+  --Verylightgray: hsl(228, 33%, 97%);
+  --White: hsl(0, 0%, 100%);
+}
