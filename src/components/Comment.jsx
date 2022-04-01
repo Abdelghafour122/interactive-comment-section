@@ -12,6 +12,8 @@ import { Reply } from "@mui/icons-material/";
 import CommentContext from "../commentContext";
 import ScoreChanger from "./ScoreChanger";
 import theme from "../styles";
+import replyArrow from "../images/icon-reply.svg";
+import RepliesSection from "./RepliesSection";
 
 const Comment = ({ onPass }) => {
   const { content, createdAt, score, replies, user } = onPass;
@@ -24,7 +26,7 @@ const Comment = ({ onPass }) => {
         <Box sx={{ p: "15px" }}>
           <Stack spacing={2} direction="row">
             <Box>
-              <ScoreChanger />
+              <ScoreChanger onScore={score} />
             </Box>
             <Box>
               <Stack
@@ -49,10 +51,10 @@ const Comment = ({ onPass }) => {
                   variant="text"
                   sx={{
                     fontWeight: 500,
-                    textTransform: "normal",
+                    textTransform: "capitalize",
                     color: "custom.moderateBlue",
                   }}
-                  startIcon={<Reply />}
+                  startIcon={<img src={replyArrow} alt="reply sign" />}
                 >
                   Reply
                 </Button>
@@ -64,6 +66,7 @@ const Comment = ({ onPass }) => {
           </Stack>
         </Box>
       </Card>
+      {replies && <RepliesSection onReplies={replies} />}
     </ThemeProvider>
   );
 };

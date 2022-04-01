@@ -4,7 +4,7 @@ const theme = createTheme({
   palette: {
     custom: {
       moderateBlue: "hsl(238, 40%, 52%)",
-      softBlue: "hsl(358, 79%, 66%)",
+      softRed: "hsl(358, 79%, 66%)",
       lightGrayishBlue: "hsl(239, 57%, 85%)",
       paleRed: "hsl(357, 100%, 86%)",
     },

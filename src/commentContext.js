@@ -1,12 +1,12 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import data from "./data.json";
 import amyrobson from "./images/avatars/image-amyrobson.png";
 import maxblagun from "./images/avatars/image-maxblagun.png";
 import ramsesmiron from "./images/avatars/image-ramsesmiron.png";
-import juliosomo from "./images/avatars/image-juliusomo.png";
+import juliusomo from "./images/avatars/image-juliusomo.png";
 
 const CommentContext = createContext();
-const IMGOBJ = { amyrobson, maxblagun, ramsesmiron, juliosomo };
+const IMGOBJ = { amyrobson, maxblagun, ramsesmiron, juliusomo };
 const { comments, currentUser } = data;
 
 export function CommentProvider({ children }) {

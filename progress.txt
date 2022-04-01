@@ -2,3 +2,12 @@ gh-pages is already installed!
 
 READ MORE ABOUT INPUT FIELDS TO USE THEM IN REPLIES
 DONT FORGET THAT STATES SHOULD ALSO BE IN THE CONTEXT FILE
+
+instead of using the sx prop everywhere, use the custom styles file (makeStyles hook)
+READ MORE ABOUT THE TRANSITIONS, CHANGES IN REACT 18
+
+USE THE MODAL ELEMENT FOR THE DELETE MESSAGE
+
+
+USE THIS CLASS TO CHANGE THE TEXTFIELDS BORDER COLOR "MuiOutlinedInput-notchedOutline"
+    it's used by the fieldset element
