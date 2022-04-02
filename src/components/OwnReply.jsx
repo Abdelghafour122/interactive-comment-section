@@ -1,7 +1,7 @@
 import React from "react";
 
-const Reply = () => {
+const OwnReply = () => {
   return <div></div>;
 };
 
-export default Reply;
+export default OwnReply;

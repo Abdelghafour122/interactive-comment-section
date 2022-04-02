@@ -11,3 +11,5 @@ USE THE MODAL ELEMENT FOR THE DELETE MESSAGE
 
 USE THIS CLASS TO CHANGE THE TEXTFIELDS BORDER COLOR "MuiOutlinedInput-notchedOutline"
     it's used by the fieldset element
+
+The question is whether to use useState or useReducer

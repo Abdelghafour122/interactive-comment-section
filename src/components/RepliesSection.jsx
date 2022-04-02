@@ -12,9 +12,13 @@ import ScoreChanger from "./ScoreChanger";
 import CommentContext from "../commentContext";
 import replyArrow from "../images/icon-reply.svg";
 import { Delete, Edit } from "@mui/icons-material";
+import AddComment from "./AddComment";
 
-const RepliesSection = ({ onReplies }) => {
+const RepliesSection = ({ onReplies, onClicked }) => {
   const { IMGOBJ } = useContext(CommentContext);
+
+  const { addComment, editComment, deleteComment } = useContext(CommentContext);
+
   const [repliess, setReplies] = useState(onReplies);
   return (
     <Stack spacing={2} width="800px" alignSelf="flex-end">
@@ -121,6 +125,7 @@ const RepliesSection = ({ onReplies }) => {
           </Card>
         );
       })}
+      {onClicked && <AddComment />}
     </Stack>
   );
 };

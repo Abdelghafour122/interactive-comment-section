@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   Avatar,
   Button,
@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import { Reply } from "@mui/icons-material/";
+import { Delete, Edit } from "@mui/icons-material";
 import CommentContext from "../commentContext";
 import ScoreChanger from "./ScoreChanger";
 import theme from "../styles";
@@ -20,6 +21,8 @@ const Comment = ({ onPass }) => {
   const { IMGOBJ } = useContext(CommentContext);
   const userName = user.username;
   const ava = IMGOBJ[`${userName}`];
+
+  const [clicked, setClicked] = useState(false);
   return (
     <ThemeProvider theme={theme}>
       <Card>
@@ -28,7 +31,7 @@ const Comment = ({ onPass }) => {
             <Box>
               <ScoreChanger onScore={score} />
             </Box>
-            <Box>
+            <Box sx={{ width: "100%" }}>
               <Stack
                 spacing={2}
                 direction="row"
@@ -47,17 +50,46 @@ const Comment = ({ onPass }) => {
                     {createdAt}
                   </Typography>
                 </Stack>
-                <Button
-                  variant="text"
-                  sx={{
-                    fontWeight: 500,
-                    textTransform: "capitalize",
-                    color: "custom.moderateBlue",
-                  }}
-                  startIcon={<img src={replyArrow} alt="reply sign" />}
-                >
-                  Reply
-                </Button>
+                {userName == "juliusomo" ? (
+                  <Stack direction="row" spacing={1}>
+                    <Button
+                      startIcon={<Delete />}
+                      sx={{
+                        color: "custom.softRed",
+                        fontWeight: 500,
+                        textTransform: "capitalize",
+                      }}
+                    >
+                      Delete
+                    </Button>
+                    <Button
+                      variant="text"
+                      sx={{
+                        fontWeight: 500,
+                        textTransform: "capitalize",
+                        color: "custom.moderateBlue",
+                      }}
+                      startIcon={<Edit />}
+                    >
+                      Edit
+                    </Button>
+                  </Stack>
+                ) : (
+                  <Button
+                    onClick={() => {
+                      setClicked(!clicked);
+                    }}
+                    variant="text"
+                    sx={{
+                      fontWeight: 500,
+                      textTransform: "capitalize",
+                      color: "custom.moderateBlue",
+                    }}
+                    startIcon={<img src={replyArrow} alt="reply sign" />}
+                  >
+                    Reply
+                  </Button>
+                )}
               </Stack>
               <Typography sx={{ color: "neutral.grayishBlue" }}>
                 {content}
@@ -66,7 +98,7 @@ const Comment = ({ onPass }) => {
           </Stack>
         </Box>
       </Card>
-      {replies && <RepliesSection onReplies={replies} />}
+      {replies && <RepliesSection onReplies={replies} onClicked={clicked} />}
     </ThemeProvider>
   );
 };

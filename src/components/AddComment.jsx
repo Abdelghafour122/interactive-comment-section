@@ -7,13 +7,13 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import CommentContext from "../commentContext";
 import theme from "../styles";
 
 const AddComment = () => {
-  const { IMGOBJ } = useContext(CommentContext);
-
+  const { IMGOBJ, addComment } = useContext(CommentContext);
+  const [commentTxt, setCommentTxt] = useState("");
   return (
     <ThemeProvider theme={theme}>
       <Card>
@@ -30,6 +30,10 @@ const AddComment = () => {
               minRows={4}
               id="outlined-multilined"
               placeholder="Add a comment"
+              value={commentTxt}
+              onChange={(e) => {
+                setCommentTxt(e.target.value);
+              }}
             />
             <Button
               size="large"
@@ -40,6 +44,11 @@ const AddComment = () => {
                 "&:hover": {
                   bgcolor: "custom.lightGrayishBlue",
                 },
+              }}
+              onClick={(e) => {
+                !commentTxt.trim() && e.preventDefault();
+                addComment(commentTxt.trim());
+                setCommentTxt("");
               }}
             >
               Send
