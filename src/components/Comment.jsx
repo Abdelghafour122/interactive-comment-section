@@ -6,6 +6,7 @@ import {
   Stack,
   Typography,
   ThemeProvider,
+  TextField,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import { Reply } from "@mui/icons-material/";
@@ -18,11 +19,13 @@ import RepliesSection from "./RepliesSection";
 
 const Comment = ({ onPass }) => {
   const { id, content, createdAt, score, replies, user } = onPass;
-  const { IMGOBJ, deleteComment, editComment } = useContext(CommentContext);
+  const { IMGOBJ, deleteComment } = useContext(CommentContext);
   const userName = user.username;
   const ava = IMGOBJ[`${userName}`];
 
   const [clicked, setClicked] = useState(false);
+  const [editingComm, setEditingComm] = useState(false);
+  const [commentText, setCommentText] = useState(content);
   return (
     <ThemeProvider theme={theme}>
       <Card>
@@ -67,12 +70,14 @@ const Comment = ({ onPass }) => {
                     </Button>
                     <Button
                       variant="text"
+                      disabled={editingComm}
                       sx={{
                         fontWeight: 500,
                         textTransform: "capitalize",
                         color: "custom.moderateBlue",
                       }}
                       startIcon={<Edit />}
+                      onClick={() => setEditingComm(!editingComm)}
                     >
                       Edit
                     </Button>
@@ -94,9 +99,44 @@ const Comment = ({ onPass }) => {
                   </Button>
                 )}
               </Stack>
-              <Typography sx={{ color: "neutral.grayishBlue" }}>
-                {content}
-              </Typography>
+              {editingComm ? (
+                <>
+                  <TextField
+                    multiline
+                    fullWidth
+                    minRows={4}
+                    id="outlined-multilined"
+                    placeholder="Don't leave this blank!"
+                    value={commentText}
+                    onChange={(e) => {
+                      setCommentText(e.target.value);
+                    }}
+                  />
+                  <Button
+                    sx={{
+                      bgcolor: "custom.moderateBlue",
+                      color: "neutral.white",
+                      p: "8px 25px",
+                      "&:hover": {
+                        bgcolor: "custom.lightGrayishBlue",
+                      },
+                    }}
+                    onClick={() => {
+                      !commentText.trim()
+                        ? alert(
+                            "If  you want to remove the comment text, just delete it."
+                          )
+                        : setEditingComm(!editingComm);
+                    }}
+                  >
+                    Update
+                  </Button>
+                </>
+              ) : (
+                <Typography sx={{ color: "neutral.grayishBlue" }}>
+                  {commentText}
+                </Typography>
+              )}
             </Box>
           </Stack>
         </Box>

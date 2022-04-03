@@ -6,7 +6,6 @@ import CommentContext from "../commentContext";
 
 const Core = () => {
   const { commentSection } = useContext(CommentContext);
-  // const [commentSection, setCommentSection] = useState(comments)
   return (
     <Container maxWidth="md">
       <Stack spacing={3}>
