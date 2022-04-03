@@ -12,12 +12,30 @@ import ScoreChanger from "./ScoreChanger";
 import CommentContext from "../commentContext";
 import replyArrow from "../images/icon-reply.svg";
 import { Delete, Edit } from "@mui/icons-material";
-import AddComment from "./AddComment";
+import AddReply from "./AddReply";
 
-const RepliesSection = ({ onReplies, onClicked }) => {
+const RepliesSection = ({ onReplies, onClicked, onTar }) => {
   const { IMGOBJ } = useContext(CommentContext);
-
   const [repliess, setReplies] = useState(onReplies);
+  const addReply = (data) => {
+    setReplies([
+      ...repliess,
+      {
+        id: Math.floor(Math.random() * 10000),
+        content: data,
+        createdAt: "Just now",
+        score: 0,
+        replyingTo: `${onTar}`,
+        replies: [],
+        user: { username: "juliusomo" },
+      },
+    ]);
+  };
+  // DO THE SAME THING AS IN EDIT COMMENT
+  const editReply = (repContent) => {};
+  const deleteReply = (id) => {
+    setReplies(repliess.filter((reply) => reply.id !== id));
+  };
   return (
     <Stack spacing={2} width="800px" alignSelf="flex-end">
       {repliess.map((rep) => {
@@ -31,7 +49,7 @@ const RepliesSection = ({ onReplies, onClicked }) => {
                 <Box>
                   <ScoreChanger onScore={score} />
                 </Box>
-                <Box>
+                <Box sx={{ width: "100%" }}>
                   <Stack
                     spacing={2}
                     direction="row"
@@ -72,6 +90,7 @@ const RepliesSection = ({ onReplies, onClicked }) => {
                             fontWeight: 500,
                             textTransform: "capitalize",
                           }}
+                          onClick={() => deleteReply(rep.id)}
                         >
                           Delete
                         </Button>
@@ -123,7 +142,7 @@ const RepliesSection = ({ onReplies, onClicked }) => {
           </Card>
         );
       })}
-      {onClicked && <AddComment />}
+      {onClicked && <AddReply onAdd={addReply} onClicked={onClicked} />}
     </Stack>
   );
 };

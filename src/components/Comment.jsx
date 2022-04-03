@@ -9,7 +9,6 @@ import {
   TextField,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import { Reply } from "@mui/icons-material/";
 import { Delete, Edit } from "@mui/icons-material";
 import CommentContext from "../commentContext";
 import ScoreChanger from "./ScoreChanger";
@@ -141,7 +140,13 @@ const Comment = ({ onPass }) => {
           </Stack>
         </Box>
       </Card>
-      {replies && <RepliesSection onReplies={replies} onClicked={clicked} />}
+      {replies && (
+        <RepliesSection
+          onReplies={replies}
+          onClicked={clicked}
+          onTar={userName}
+        />
+      )}
     </ThemeProvider>
   );
 };
