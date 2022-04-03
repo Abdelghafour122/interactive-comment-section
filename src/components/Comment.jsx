@@ -17,8 +17,8 @@ import replyArrow from "../images/icon-reply.svg";
 import RepliesSection from "./RepliesSection";
 
 const Comment = ({ onPass }) => {
-  const { content, createdAt, score, replies, user } = onPass;
-  const { IMGOBJ } = useContext(CommentContext);
+  const { id, content, createdAt, score, replies, user } = onPass;
+  const { IMGOBJ, deleteComment, editComment } = useContext(CommentContext);
   const userName = user.username;
   const ava = IMGOBJ[`${userName}`];
 
@@ -50,7 +50,7 @@ const Comment = ({ onPass }) => {
                     {createdAt}
                   </Typography>
                 </Stack>
-                {userName == "juliusomo" ? (
+                {userName === "juliusomo" ? (
                   <Stack direction="row" spacing={1}>
                     <Button
                       startIcon={<Delete />}
@@ -58,6 +58,9 @@ const Comment = ({ onPass }) => {
                         color: "custom.softRed",
                         fontWeight: 500,
                         textTransform: "capitalize",
+                      }}
+                      onClick={() => {
+                        deleteComment(id);
                       }}
                     >
                       Delete

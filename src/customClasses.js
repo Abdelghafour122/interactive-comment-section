@@ -15,6 +15,14 @@ const useStyles = makeStyles({
       },
     },
   },
+  sendButton: {
+    backgroundColor: "hsl(238, 40%, 52%)",
+    color: "#fff",
+    padding: "8px 25px",
+    "&:hover": {
+      backgroundColor: "hsl(239, 57%, 85%)",
+    },
+  },
 });
 
 export default useStyles;

@@ -17,8 +17,6 @@ import AddComment from "./AddComment";
 const RepliesSection = ({ onReplies, onClicked }) => {
   const { IMGOBJ } = useContext(CommentContext);
 
-  const { addComment, editComment, deleteComment } = useContext(CommentContext);
-
   const [repliess, setReplies] = useState(onReplies);
   return (
     <Stack spacing={2} width="800px" alignSelf="flex-end">

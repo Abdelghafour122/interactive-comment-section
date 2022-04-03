@@ -46,8 +46,9 @@ const AddComment = () => {
                 },
               }}
               onClick={(e) => {
-                !commentTxt.trim() && e.preventDefault();
-                addComment(commentTxt.trim());
+                !commentTxt.trim()
+                  ? e.preventDefault()
+                  : addComment(commentTxt.trim());
                 setCommentTxt("");
               }}
             >
