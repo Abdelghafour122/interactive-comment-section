@@ -15,6 +15,7 @@ import ScoreChanger from "./ScoreChanger";
 import theme from "../styles";
 import replyArrow from "../images/icon-reply.svg";
 import RepliesSection from "./RepliesSection";
+import YouTag from "./YouTag";
 
 const Comment = ({ onPass }) => {
   const { id, content, createdAt, score, replies, user } = onPass;
@@ -48,6 +49,7 @@ const Comment = ({ onPass }) => {
                   >
                     {userName}
                   </Typography>
+                  {userName === "juliusomo" && <YouTag />}
                   <Typography sx={{ color: "neutral.grayishBlue" }}>
                     {createdAt}
                   </Typography>
@@ -123,7 +125,7 @@ const Comment = ({ onPass }) => {
                     onClick={() => {
                       !commentText.trim()
                         ? alert(
-                            "If  you want to remove the comment text, just delete it."
+                            "If  you want to remove the comment text, just delete the comment."
                           )
                         : setEditingComm(!editingComm);
                     }}

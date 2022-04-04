@@ -5,7 +5,7 @@ import {
   Typography,
   Avatar,
   Button,
-  Chip,
+  TextField,
 } from "@mui/material";
 import React, { useContext, useState } from "react";
 import ScoreChanger from "./ScoreChanger";
@@ -13,10 +13,16 @@ import CommentContext from "../commentContext";
 import replyArrow from "../images/icon-reply.svg";
 import { Delete, Edit } from "@mui/icons-material";
 import AddReply from "./AddReply";
+import YouTag from "./YouTag";
 
 const RepliesSection = ({ onReplies, onClicked, onTar }) => {
   const { IMGOBJ } = useContext(CommentContext);
   const [repliess, setReplies] = useState(onReplies);
+
+  // const [clicked, setClicked] = useState(false);
+  // const [editingRep, setEditingRep] = useState(false);
+  // const [repText, setRepText] = useState("");
+
   const addReply = (data) => {
     setReplies([
       ...repliess,
@@ -64,19 +70,7 @@ const RepliesSection = ({ onReplies, onClicked, onTar }) => {
                       >
                         {userName}
                       </Typography>
-                      {userName === "juliusomo" && (
-                        <Chip
-                          label="you"
-                          variant="filled"
-                          size="small"
-                          sx={{
-                            bgcolor: "custom.moderateBlue",
-                            color: "neutral.white",
-                            fontWeight: 500,
-                            borderRadius: "5px",
-                          }}
-                        />
-                      )}
+                      {userName === "juliusomo" && <YouTag />}
                       <Typography sx={{ color: "neutral.grayishBlue" }}>
                         {createdAt}
                       </Typography>
@@ -96,12 +90,17 @@ const RepliesSection = ({ onReplies, onClicked, onTar }) => {
                         </Button>
                         <Button
                           variant="text"
+                          // disabled={clicked}
                           sx={{
                             fontWeight: 500,
                             textTransform: "capitalize",
                             color: "custom.moderateBlue",
                           }}
                           startIcon={<Edit />}
+                          // onClick={() => {
+                          //   setClicked(!clicked);
+                          //   setEditingRep(!editingRep);
+                          // }}
                         >
                           Edit
                         </Button>
@@ -120,6 +119,39 @@ const RepliesSection = ({ onReplies, onClicked, onTar }) => {
                       </Button>
                     )}
                   </Stack>
+                  {/* {editingRep ? (
+                    <>
+                      <TextField
+                        multiline
+                        fullWidth
+                        minRows={4}
+                        id="outlined-multilined"
+                        placeholder="Don't leave this blank!"
+                        value={repText}
+                        onChange={(e) => {
+                          setRepText(e.target.value);
+                        }}
+                      />
+                      <Button
+                        sx={{
+                          bgcolor: "custom.moderateBlue",
+                          color: "neutral.white",
+                          p: "8px 25px",
+                          "&:hover": {
+                            bgcolor: "custom.lightGrayishBlue",
+                          },
+                        }}
+                        onClick={() => {
+                          !repText.trim()
+                            ? alert(
+                                "If  you want to remove the comment text, just delete the comment."
+                              )
+                            : setEditingRep(!editingRep);
+                        }}
+                      >
+                        Update
+                      </Button>
+                    </> */}
                   <Typography
                     component="div"
                     sx={{ color: "neutral.grayishBlue" }}
@@ -136,6 +168,8 @@ const RepliesSection = ({ onReplies, onClicked, onTar }) => {
                     </Typography>{" "}
                     {content}
                   </Typography>
+                  {/* ) : (
+                  )} */}
                 </Box>
               </Stack>
             </Box>
