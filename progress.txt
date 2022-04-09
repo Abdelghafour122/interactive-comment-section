@@ -15,7 +15,7 @@ USE THIS CLASS TO CHANGE THE TEXTFIELDS BORDER COLOR "MuiOutlinedInput-notchedOu
 The question is whether to use useState or useReducer
 
 
-NEXT STEPS: do edit reply, do the chip in the own comment
+NEXT STEPS: do edit reply
 LATER: finish the design/css, make transitions, use useRef to auto-focus when you click EDIT
 
 WHERE ARE WE? 
