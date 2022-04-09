@@ -16,4 +16,8 @@ The question is whether to use useState or useReducer
 
 
 NEXT STEPS: do edit reply, do the chip in the own comment
-LATER: finish the design/css, make transitions
+LATER: finish the design/css, make transitions, use useRef to auto-focus when you click EDIT
+
+WHERE ARE WE? 
+    can't edit a reply
+    can't reply to a reply
