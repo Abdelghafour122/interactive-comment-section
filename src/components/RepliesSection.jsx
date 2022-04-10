@@ -1,28 +1,14 @@
-import {
-  Box,
-  Card,
-  Stack,
-  Typography,
-  Avatar,
-  Button,
-  TextField,
-} from "@mui/material";
+import { Box, Card, Stack, Typography, Avatar, Button } from "@mui/material";
 import React, { useContext, useState } from "react";
 import ScoreChanger from "./ScoreChanger";
 import CommentContext from "../commentContext";
 import replyArrow from "../images/icon-reply.svg";
-import { Delete, Edit } from "@mui/icons-material";
 import AddReply from "./AddReply";
-import YouTag from "./YouTag";
 import OwnReply from "./OwnReply";
 
 const RepliesSection = ({ onReplies, onClicked, onTar }) => {
   const { IMGOBJ } = useContext(CommentContext);
   const [repliess, setReplies] = useState(onReplies);
-
-  const [clicked, setClicked] = useState(false);
-  const [editingRep, setEditingRep] = useState(false);
-  const [repText, setRepText] = useState("");
 
   const addReply = (data) => {
     setReplies([
@@ -60,11 +46,12 @@ const RepliesSection = ({ onReplies, onClicked, onTar }) => {
           <OwnReply
             key={rep.id}
             comId={rep.id}
-            OnContent={content}
+            onContent={content}
             onTime={createdAt}
             onCount={score}
             onTar={replyingTo}
             onDel={deleteReply}
+            onEdit={editReply}
           />
         ) : (
           <Card key={rep.id}>
@@ -92,102 +79,34 @@ const RepliesSection = ({ onReplies, onClicked, onTar }) => {
                         {createdAt}
                       </Typography>
                     </Stack>
-                    {userName === "juliusomo" ? (
-                      <Stack direction="row" spacing={1}>
-                        <Button
-                          startIcon={<Delete />}
-                          sx={{
-                            color: "custom.softRed",
-                            fontWeight: 500,
-                            textTransform: "capitalize",
-                          }}
-                          onClick={() => deleteReply(rep.id)}
-                        >
-                          Delete
-                        </Button>
-                        <Button
-                          variant="text"
-                          disabled={clicked}
-                          sx={{
-                            fontWeight: 500,
-                            textTransform: "capitalize",
-                            color: "custom.moderateBlue",
-                          }}
-                          startIcon={<Edit />}
-                          onClick={() => {
-                            setClicked(!clicked);
-                            setEditingRep(!editingRep);
-                          }}
-                        >
-                          Edit
-                        </Button>
-                      </Stack>
-                    ) : (
-                      <Button
-                        variant="text"
-                        sx={{
-                          fontWeight: 500,
-                          textTransform: "capitalize",
-                          color: "custom.moderateBlue",
-                        }}
-                        startIcon={<img src={replyArrow} alt="reply sign" />}
-                      >
-                        Reply
-                      </Button>
-                    )}
-                  </Stack>
-                  {editingRep && userName === "juliusomo" ? (
-                    <>
-                      <TextField
-                        multiline
-                        fullWidth
-                        minRows={4}
-                        id="outlined-multilined"
-                        placeholder="Don't leave this blank!"
-                        value={repText}
-                        onChange={(e) => {
-                          setRepText(e.target.value);
-                        }}
-                      />
-                      <Button
-                        sx={{
-                          bgcolor: "custom.moderateBlue",
-                          color: "neutral.white",
-                          p: "8px 25px",
-                          "&:hover": {
-                            bgcolor: "custom.lightGrayishBlue",
-                          },
-                        }}
-                        onClick={() => {
-                          !repText.trim()
-                            ? alert(
-                                "If  you want to remove the comment text, just delete the comment."
-                              )
-                            : setEditingRep(!editingRep);
-                          setClicked(!clicked);
-                        }}
-                      >
-                        Update
-                      </Button>
-                    </>
-                  ) : (
-                    <Typography
-                      component="div"
-                      sx={{ color: "neutral.grayishBlue" }}
+                    <Button
+                      variant="text"
+                      sx={{
+                        fontWeight: 500,
+                        textTransform: "capitalize",
+                        color: "custom.moderateBlue",
+                      }}
+                      startIcon={<img src={replyArrow} alt="reply sign" />}
                     >
-                      <Typography
-                        sx={{
-                          color: "custom.moderateBlue",
-                          width: "fit-content",
-                          display: "inline-block",
-                          fontWeight: 500,
-                        }}
-                      >
-                        {`@${replyingTo}`}
-                      </Typography>{" "}
-                      {userName === "juliusomo" ? repText || content : content}
-                    </Typography>
-                  )}
+                      Reply
+                    </Button>
+                  </Stack>
+                  <Typography
+                    component="div"
+                    sx={{ color: "neutral.grayishBlue" }}
+                  >
+                    <Typography
+                      sx={{
+                        color: "custom.moderateBlue",
+                        width: "fit-content",
+                        display: "inline-block",
+                        fontWeight: 500,
+                      }}
+                    >
+                      {`@${replyingTo}`}
+                    </Typography>{" "}
+                    {content}
+                  </Typography>
                 </Box>
               </Stack>
             </Box>

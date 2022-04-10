@@ -13,7 +13,7 @@ import YouTag from "./YouTag";
 import CommentContext from "../commentContext";
 import ScoreChanger from "./ScoreChanger";
 
-const OwnReply = ({ OnContent, onCount, onTar, onDel, comId }) => {
+const OwnReply = ({ onContent, onCount, onTar, onDel, onEdit, comId }) => {
   const { IMGOBJ } = useContext(CommentContext);
   const prsAva = IMGOBJ.juliusomo;
 
@@ -105,6 +105,7 @@ const OwnReply = ({ OnContent, onCount, onTar, onDel, comId }) => {
                       ? alert("Read the placeholder.")
                       : setEditingRep(!editingRep);
                     setClicked(!clicked);
+                    console.log("check if it works");
                   }}
                 >
                   Update
@@ -122,7 +123,7 @@ const OwnReply = ({ OnContent, onCount, onTar, onDel, comId }) => {
                 >
                   {`@${onTar}`}
                 </Typography>{" "}
-                {OnContent}
+                {onContent}
               </Typography>
             )}
           </Box>
