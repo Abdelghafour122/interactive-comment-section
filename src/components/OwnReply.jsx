@@ -13,13 +13,13 @@ import YouTag from "./YouTag";
 import CommentContext from "../commentContext";
 import ScoreChanger from "./ScoreChanger";
 
-const OwnReply = ({ onContent, onCount, onTar, onDel, onEdit, comId }) => {
+const OwnReply = ({ onContent, onCount, onTar, onDel, comId }) => {
   const { IMGOBJ } = useContext(CommentContext);
   const prsAva = IMGOBJ.juliusomo;
 
   const [clicked, setClicked] = useState(false);
   const [editingRep, setEditingRep] = useState(false);
-  const [repText, setRepText] = useState("");
+  const [repText, setRepText] = useState(onContent);
 
   return (
     <Card>
@@ -123,7 +123,7 @@ const OwnReply = ({ onContent, onCount, onTar, onDel, onEdit, comId }) => {
                 >
                   {`@${onTar}`}
                 </Typography>{" "}
-                {onContent}
+                {repText}
               </Typography>
             )}
           </Box>

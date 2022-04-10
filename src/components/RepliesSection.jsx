@@ -24,15 +24,6 @@ const RepliesSection = ({ onReplies, onClicked, onTar }) => {
       },
     ]);
   };
-  // DO THE SAME THING AS IN EDIT COMMENT
-  const editReply = (repContent) => {
-    // setReplies([
-    //   ...repliess,
-    //   {
-    //     id: Math.floor(Math.random() * 10000),
-    //   },
-    // ]);
-  };
   const deleteReply = (id) => {
     setReplies(repliess.filter((reply) => reply.id !== id));
   };
@@ -51,7 +42,6 @@ const RepliesSection = ({ onReplies, onClicked, onTar }) => {
             onCount={score}
             onTar={replyingTo}
             onDel={deleteReply}
-            onEdit={editReply}
           />
         ) : (
           <Card key={rep.id}>
