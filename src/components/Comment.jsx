@@ -26,6 +26,7 @@ const Comment = ({ onPass }) => {
   const [clicked, setClicked] = useState(false);
   const [editingComm, setEditingComm] = useState(false);
   const [commentText, setCommentText] = useState(content);
+
   return (
     <ThemeProvider theme={theme}>
       <Card>

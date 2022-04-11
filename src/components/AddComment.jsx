@@ -14,6 +14,7 @@ import theme from "../styles";
 const AddComment = () => {
   const { IMGOBJ, addComment } = useContext(CommentContext);
   const [commentTxt, setCommentTxt] = useState("");
+
   return (
     <ThemeProvider theme={theme}>
       <Card>
