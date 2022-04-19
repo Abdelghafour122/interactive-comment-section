@@ -83,7 +83,7 @@ const RepliesSection = ({ onReplies, onClicked, onTar }) => {
                   </Stack>
                   <Typography
                     component="div"
-                    sx={{ color: "neutral.grayishBlue" }}
+                    sx={{ color: "neutral.grayishBlue", p: "20px 0" }}
                   >
                     <Typography
                       sx={{

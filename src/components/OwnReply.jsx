@@ -81,6 +81,7 @@ const OwnReply = ({ onContent, onCount, onTar, onDel, comId }) => {
             {editingRep ? (
               <>
                 <TextField
+                  sx={{ p: "20px 0" }}
                   multiline
                   fullWidth
                   minRows={4}
@@ -96,6 +97,7 @@ const OwnReply = ({ onContent, onCount, onTar, onDel, comId }) => {
                     bgcolor: "custom.moderateBlue",
                     color: "neutral.white",
                     p: "8px 25px",
+                    float: "left",
                     "&:hover": {
                       bgcolor: "custom.lightGrayishBlue",
                     },
@@ -112,7 +114,10 @@ const OwnReply = ({ onContent, onCount, onTar, onDel, comId }) => {
                 </Button>
               </>
             ) : (
-              <Typography component="div" sx={{ color: "neutral.grayishBlue" }}>
+              <Typography
+                component="div"
+                sx={{ color: "neutral.grayishBlue", p: "20px 0" }}
+              >
                 <Typography
                   sx={{
                     color: "custom.moderateBlue",

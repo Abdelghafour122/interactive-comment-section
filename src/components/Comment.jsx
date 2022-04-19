@@ -7,6 +7,7 @@ import {
   Typography,
   ThemeProvider,
   TextField,
+  // Modal,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import { Delete, Edit } from "@mui/icons-material";
@@ -26,9 +27,16 @@ const Comment = ({ onPass }) => {
   const [clicked, setClicked] = useState(false);
   const [editingComm, setEditingComm] = useState(false);
   const [commentText, setCommentText] = useState(content);
+  // const [openModal, setOpenModal] = useState(false);
+
+  // const handleOpen = () => setOpenModal(true);
+  // const handleClose = () => setOpenModal(false);
 
   return (
     <ThemeProvider theme={theme}>
+      {/* <Modal open={openModal} onClose={handleClose}>
+        This is a modal
+      </Modal> */}
       <Card>
         <Box sx={{ p: "15px" }}>
           <Stack spacing={2} direction="row">
@@ -66,6 +74,7 @@ const Comment = ({ onPass }) => {
                       }}
                       onClick={() => {
                         deleteComment(id);
+                        // handleOpen();
                       }}
                     >
                       Delete
@@ -104,6 +113,7 @@ const Comment = ({ onPass }) => {
               {editingComm ? (
                 <>
                   <TextField
+                    sx={{ p: "20px 0" }}
                     multiline
                     fullWidth
                     minRows={4}
@@ -116,6 +126,7 @@ const Comment = ({ onPass }) => {
                   />
                   <Button
                     sx={{
+                      float: "right",
                       bgcolor: "custom.moderateBlue",
                       color: "neutral.white",
                       p: "8px 25px",
@@ -135,7 +146,7 @@ const Comment = ({ onPass }) => {
                   </Button>
                 </>
               ) : (
-                <Typography sx={{ color: "neutral.grayishBlue" }}>
+                <Typography sx={{ color: "neutral.grayishBlue", p: "20px 0" }}>
                   {commentText}
                 </Typography>
               )}
