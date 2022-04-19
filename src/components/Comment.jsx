@@ -7,7 +7,9 @@ import {
   Typography,
   ThemeProvider,
   TextField,
-  // Modal,
+  Dialog,
+  DialogTitle,
+  DialogContent,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import { Delete, Edit } from "@mui/icons-material";
@@ -17,6 +19,7 @@ import theme from "../styles";
 import replyArrow from "../images/icon-reply.svg";
 import RepliesSection from "./RepliesSection";
 import YouTag from "./YouTag";
+import ConfirmDelete from "./ConfirmDelete";
 
 const Comment = ({ onPass }) => {
   const { id, content, createdAt, score, replies, user } = onPass;
@@ -27,16 +30,19 @@ const Comment = ({ onPass }) => {
   const [clicked, setClicked] = useState(false);
   const [editingComm, setEditingComm] = useState(false);
   const [commentText, setCommentText] = useState(content);
-  // const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
-  // const handleOpen = () => setOpenModal(true);
-  // const handleClose = () => setOpenModal(false);
+  const handleOpen = () => {
+    setOpenModal(true);
+  };
+
+  const handleClose = () => {
+    setOpenModal(false);
+  };
 
   return (
     <ThemeProvider theme={theme}>
-      {/* <Modal open={openModal} onClose={handleClose}>
-        This is a modal
-      </Modal> */}
+      <ConfirmDelete onOpen={openModal} onClose={handleClose} />
       <Card>
         <Box sx={{ p: "15px" }}>
           <Stack spacing={2} direction="row">
@@ -73,8 +79,11 @@ const Comment = ({ onPass }) => {
                         textTransform: "capitalize",
                       }}
                       onClick={() => {
-                        deleteComment(id);
-                        // handleOpen();
+                        handleOpen();
+                        // IF THE DELETE BUTTON IS CLICKED
+                        // DELETE, ELSE TAKE IT OFF WITH HANDLECLOSE
+
+                        // deleteComment(id);
                       }}
                     >
                       Delete
