@@ -7,9 +7,6 @@ import {
   Typography,
   ThemeProvider,
   TextField,
-  Dialog,
-  DialogTitle,
-  DialogContent,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import { Delete, Edit } from "@mui/icons-material";
