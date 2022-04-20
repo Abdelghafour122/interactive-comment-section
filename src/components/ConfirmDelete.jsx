@@ -45,7 +45,6 @@ const ConfirmDelete = ({ onOpen, onClose, id }) => {
             }}
             onClick={() => {
               deleteComment(id);
-              // onClose();
             }}
           >
             Yes, delete
