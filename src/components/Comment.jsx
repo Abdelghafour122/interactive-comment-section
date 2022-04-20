@@ -20,7 +20,7 @@ import ConfirmDelete from "./ConfirmDelete";
 
 const Comment = ({ onPass }) => {
   const { id, content, createdAt, score, replies, user } = onPass;
-  const { IMGOBJ, deleteComment } = useContext(CommentContext);
+  const { IMGOBJ } = useContext(CommentContext);
   const userName = user.username;
   const ava = IMGOBJ[`${userName}`];
 
@@ -39,7 +39,7 @@ const Comment = ({ onPass }) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <ConfirmDelete onOpen={openModal} onClose={handleClose} />
+      <ConfirmDelete onOpen={openModal} onClose={handleClose} id={id} />
       <Card>
         <Box sx={{ p: "15px" }}>
           <Stack spacing={2} direction="row">
@@ -77,10 +77,6 @@ const Comment = ({ onPass }) => {
                       }}
                       onClick={() => {
                         handleOpen();
-                        // IF THE DELETE BUTTON IS CLICKED
-                        // DELETE, ELSE TAKE IT OFF WITH HANDLECLOSE
-
-                        // deleteComment(id);
                       }}
                     >
                       Delete

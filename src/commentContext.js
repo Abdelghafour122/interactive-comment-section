@@ -26,7 +26,6 @@ export function CommentProvider({ children }) {
   };
 
   const deleteComment = (commentId) => {
-    console.log("deleted");
     setCommentSection(
       commentSection.filter((comment) => comment.id !== commentId)
     );
