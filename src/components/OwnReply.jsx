@@ -97,7 +97,7 @@ const OwnReply = ({ onContent, onCount, onTar, onDel, comId }) => {
                     bgcolor: "custom.moderateBlue",
                     color: "neutral.white",
                     p: "8px 25px",
-                    float: "left",
+                    float: "right",
                     "&:hover": {
                       bgcolor: "custom.lightGrayishBlue",
                     },
