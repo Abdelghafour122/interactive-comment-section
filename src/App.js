@@ -4,11 +4,31 @@ import { CommentProvider } from "./commentContext";
 
 function App() {
   return (
-    <div className="App">
+    <main className="App">
       <CommentProvider>
         <Core />
       </CommentProvider>
-    </div>
+
+      <footer class="attribution">
+        Challenge by{" "}
+        <a
+          href="https://www.frontendmentor.io?ref=challenge"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Frontend Mentor
+        </a>
+        . Coded by{" "}
+        <a
+          href="https://twitter.com/Abdelghafour1_"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Abdelghafour122
+        </a>
+        .
+      </footer>
+    </main>
   );
 }
 

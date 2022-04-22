@@ -11,3 +11,20 @@
   --Verylightgray: hsl(228, 33%, 97%);
   --White: hsl(0, 0%, 100%);
 }
+
+* {
+  box-sizing: border-box;
+}
+
+footer {
+  text-align: center;
+  font-family: Rubik;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 1.2rem;
+}
+
+footer a {
+  color: royalblue;
+  font-weight: 500;
+}
