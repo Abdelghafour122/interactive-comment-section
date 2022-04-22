@@ -16,6 +16,10 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: var(--Lightgray);
+}
+
 footer {
   text-align: center;
   font-family: Rubik;
