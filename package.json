@@ -1,4 +1,5 @@
 {
+  "homepage": "https://Abdelghafour122.github.io/interactive-comment-section",
   "name": "interactive-comment-section",
   "version": "0.1.0",
   "private": true,
@@ -17,6 +18,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
