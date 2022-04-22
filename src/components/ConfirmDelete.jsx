@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import CommentContext from "../commentContext";
 
-const ConfirmDelete = ({ onOpen, onClose, id }) => {
+const ConfirmDelete = ({ onOpen, onClose, id, onDel, comId }) => {
   const { deleteComment } = useContext(CommentContext);
   return (
     <Dialog open={onOpen} onClose={onClose}>
@@ -44,7 +44,7 @@ const ConfirmDelete = ({ onOpen, onClose, id }) => {
               "&:hover": { bgcolor: "custom.softRed" },
             }}
             onClick={() => {
-              deleteComment(id);
+              onDel ? onDel(comId) : deleteComment(id);
             }}
           >
             Yes, delete
