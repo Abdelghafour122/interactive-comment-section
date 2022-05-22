@@ -1,15 +1,4 @@
-gh-pages is already installed!
-
-READ MORE ABOUT THE TRANSITIONS, CHANGES IN REACT 18
-
-USE THIS CLASS TO CHANGE THE TEXTFIELDS BORDER COLOR "MuiOutlinedInput-notchedOutline"
-    it's used by the fieldset element
-
-The question is whether to use useState or useReducer
-
-
 LATER: finish the design/css, make transitions
 
-WHERE ARE WE? 
     can't reply to a reply
     add the confirm to the delete reply
