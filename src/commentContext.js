@@ -30,6 +30,11 @@ export function CommentProvider({ children }) {
       commentSection.filter((comment) => comment.id !== commentId)
     );
   };
+
+  const addReply = (replyContent) => {};
+
+  const deleteReply = (id) => {};
+
   return (
     <CommentContext.Provider
       value={{

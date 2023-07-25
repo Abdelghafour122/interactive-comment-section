@@ -1,15 +1,13 @@
 import { Box, IconButton, Typography } from "@mui/material";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import useStyles from "../customClasses";
-import CommentContext from "../commentContext";
 
 const ScoreChanger = ({ onScore }) => {
   const classes = useStyles();
   const [score, setScore] = useState(onScore);
 
-  const { comments } = useContext(CommentContext);
   return (
     <Box className={classes.scoreChanger}>
       <IconButton

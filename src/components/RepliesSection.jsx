@@ -103,7 +103,7 @@ const RepliesSection = ({ onReplies, onClicked, onTar }) => {
           </Card>
         );
       })}
-      {onClicked && <AddReply onAdd={addReply} />}
+      {onClicked ? <AddReply onAdd={addReply} /> : null}
     </Stack>
   );
 };
