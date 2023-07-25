@@ -1,22 +1,19 @@
 import React, { useContext, useState } from "react";
-import {
-  Avatar,
-  Button,
-  Card,
-  Stack,
-  Typography,
-  ThemeProvider,
-  TextField,
-} from "@mui/material";
+import { Avatar, Card, Stack, ThemeProvider } from "@mui/material";
 import { Box } from "@mui/system";
-import { Delete, Edit } from "@mui/icons-material";
 import CommentContext from "../commentContext";
 import ScoreChanger from "./ScoreChanger";
 import theme from "../styles";
-import replyArrow from "../images/icon-reply.svg";
 import RepliesSection from "./RepliesSection";
-import YouTag from "./YouTag";
 import ConfirmDelete from "./ConfirmDelete";
+import Username from "./Reusable/Username";
+import CreatedAt from "./Reusable/CreatedAt";
+import CommentText from "./Reusable/Comment/CommentText";
+import EditableCommentField from "./Reusable/Comment/EditableCommentField";
+import EditButton from "./Reusable/Buttons/TextButtons/EditButton";
+import DeleteButton from "./Reusable/Buttons/TextButtons/DeleteButton";
+import ReplyButton from "./Reusable/Buttons/TextButtons/ReplyButton";
+import UpdateButton from "./Reusable/Buttons/BgButtons/UpdateButton";
 
 const Comment = ({ onPass }) => {
   const { id, content, createdAt, score, replies, user } = onPass;
@@ -55,114 +52,48 @@ const Comment = ({ onPass }) => {
               >
                 <Stack spacing={2} direction="row" alignItems="center">
                   <Avatar src={ava}></Avatar>
-                  <Typography
-                    fontWeight="bold"
-                    sx={{ color: "neutral.darkBlue" }}
-                  >
-                    {userName}
-                  </Typography>
-                  {userName === "juliusomo" && <YouTag />}
-                  <Typography sx={{ color: "neutral.grayishBlue" }}>
-                    {createdAt}
-                  </Typography>
+                  <Username userName={userName} />
+                  <CreatedAt createdAt={createdAt} />
                 </Stack>
                 {userName === "juliusomo" ? (
                   <Stack direction="row" spacing={1}>
-                    <Button
-                      startIcon={<Delete />}
-                      sx={{
-                        color: "custom.softRed",
-                        fontWeight: 500,
-                        textTransform: "capitalize",
-                      }}
-                      onClick={() => {
-                        handleOpen();
-                      }}
-                    >
-                      Delete
-                    </Button>
-                    <Button
-                      variant="text"
-                      disabled={editingComm}
-                      sx={{
-                        fontWeight: 500,
-                        textTransform: "capitalize",
-                        color: "custom.moderateBlue",
-                      }}
-                      startIcon={<Edit />}
-                      onClick={() => setEditingComm(!editingComm)}
-                    >
-                      Edit
-                    </Button>
+                    <DeleteButton functionality={() => handleOpen()} />
+                    <EditButton
+                      functionality={() => setEditingComm(!editingComm)}
+                      editingComm={editingComm}
+                    />
                   </Stack>
                 ) : (
-                  <Button
-                    onClick={() => {
-                      setClicked(!clicked);
-                    }}
-                    variant="text"
-                    sx={{
-                      fontWeight: 500,
-                      textTransform: "capitalize",
-                      color: "custom.moderateBlue",
-                    }}
-                    startIcon={<img src={replyArrow} alt="reply sign" />}
-                  >
-                    Reply
-                  </Button>
+                  <ReplyButton functionality={() => setClicked(!clicked)} />
                 )}
               </Stack>
               {editingComm ? (
                 <>
-                  <TextField
-                    sx={{ p: "20px 0" }}
-                    multiline
-                    fullWidth
-                    minRows={4}
-                    id="outlined-multilined"
-                    placeholder="Don't leave this blank!"
-                    value={commentText}
-                    onChange={(e) => {
-                      setCommentText(e.target.value);
-                    }}
+                  <EditableCommentField
+                    commentText={commentText}
+                    setCommentText={setCommentText}
+                    placeHolder="Don't leave this blank!"
                   />
-                  <Button
-                    sx={{
-                      float: "right",
-                      bgcolor: "custom.moderateBlue",
-                      color: "neutral.white",
-                      p: "8px 25px",
-                      "&:hover": {
-                        bgcolor: "custom.lightGrayishBlue",
-                      },
-                    }}
-                    onClick={() => {
-                      !commentText.trim()
-                        ? alert(
-                            "If  you want to remove the comment text, just delete the comment."
-                          )
-                        : setEditingComm(!editingComm);
-                    }}
-                  >
-                    Update
-                  </Button>
+                  <UpdateButton
+                    commentText={commentText}
+                    editingComm={editingComm}
+                    setEditingComm={setEditingComm}
+                  />
                 </>
               ) : (
-                <Typography sx={{ color: "neutral.grayishBlue", p: "20px 0" }}>
-                  {commentText}
-                </Typography>
+                <CommentText commentText={commentText} />
               )}
             </Box>
           </Stack>
         </Box>
       </Card>
-      {replies && (
+      {replies ? (
         <RepliesSection
           onReplies={replies}
           onClicked={clicked}
           onTar={userName}
         />
-      )}
+      ) : null}
     </ThemeProvider>
   );
 };

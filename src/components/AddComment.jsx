@@ -1,18 +1,13 @@
-import {
-  Avatar,
-  Button,
-  Card,
-  Stack,
-  TextField,
-  ThemeProvider,
-} from "@mui/material";
+import { Avatar, Card, Stack, ThemeProvider } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useContext, useState } from "react";
 import CommentContext from "../commentContext";
 import theme from "../styles";
+import EditableCommentField from "./Reusable/Comment/EditableCommentField";
+import SendButton from "./Reusable/Buttons/BgButtons/SendButton";
 
 const AddComment = () => {
-  const { IMGOBJ, addComment } = useContext(CommentContext);
+  const { IMGOBJ } = useContext(CommentContext);
   const [commentTxt, setCommentTxt] = useState("");
 
   return (
@@ -25,36 +20,12 @@ const AddComment = () => {
               variant="rounded"
               alt="user-avatar"
             />
-            <TextField
-              multiline
-              fullWidth
-              minRows={4}
-              id="outlined-multilined"
-              placeholder="Add a comment"
-              value={commentTxt}
-              onChange={(e) => {
-                setCommentTxt(e.target.value);
-              }}
+            <EditableCommentField
+              commentText={commentTxt}
+              setCommentText={setCommentTxt}
+              placeHolder="Add a comment"
             />
-            <Button
-              size="large"
-              sx={{
-                bgcolor: "custom.moderateBlue",
-                color: "neutral.white",
-                p: "8px 25px",
-                "&:hover": {
-                  bgcolor: "custom.lightGrayishBlue",
-                },
-              }}
-              onClick={(e) => {
-                !commentTxt.trim()
-                  ? e.preventDefault()
-                  : addComment(commentTxt.trim());
-                setCommentTxt("");
-              }}
-            >
-              Send
-            </Button>
+            <SendButton commentTxt={commentTxt} setCommentTxt={setCommentTxt} />
           </Stack>
         </Box>
       </Card>

@@ -1,15 +1,10 @@
-import {
-  Avatar,
-  Button,
-  Card,
-  Stack,
-  TextField,
-  ThemeProvider,
-} from "@mui/material";
+import { Avatar, Card, Stack, ThemeProvider } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useContext, useState } from "react";
 import CommentContext from "../commentContext";
 import theme from "../styles";
+import AddReplyButton from "./Reusable/Buttons/BgButtons/AddReplyButton";
+import EditableReplyField from "./Reusable/Reply/EditableReplyField";
 
 const AddReply = ({ onAdd }) => {
   const { IMGOBJ } = useContext(CommentContext);
@@ -24,34 +19,16 @@ const AddReply = ({ onAdd }) => {
               variant="rounded"
               alt="user-avatar"
             />
-            <TextField
-              multiline
-              fullWidth
-              minRows={4}
-              id="outlined-multilined"
-              placeholder="Add a comment"
-              value={replyText}
-              onChange={(e) => {
-                setReplyText(e.target.value);
-              }}
+            <EditableReplyField
+              placeHolder="Add a reply"
+              setText={setReplyText}
+              text={replyText}
             />
-            <Button
-              size="large"
-              sx={{
-                bgcolor: "custom.moderateBlue",
-                color: "neutral.white",
-                p: "8px 25px",
-                "&:hover": {
-                  bgcolor: "custom.lightGrayishBlue",
-                },
-              }}
-              onClick={(e) => {
-                !replyText.trim() ? e.preventDefault() : onAdd(replyText);
-                setReplyText("");
-              }}
-            >
-              Reply
-            </Button>
+            <AddReplyButton
+              onAdd={onAdd}
+              replyText={replyText}
+              setReplyText={setReplyText}
+            />
           </Stack>
         </Box>
       </Card>

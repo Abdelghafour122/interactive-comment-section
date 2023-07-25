@@ -1,18 +1,15 @@
 import React, { useContext, useState } from "react";
-import { Delete, Edit } from "@mui/icons-material";
-import {
-  Box,
-  Card,
-  Stack,
-  Typography,
-  Avatar,
-  Button,
-  TextField,
-} from "@mui/material";
-import YouTag from "./YouTag";
+import { Box, Card, Stack, Avatar } from "@mui/material";
 import CommentContext from "../commentContext";
 import ScoreChanger from "./ScoreChanger";
 import ConfirmDelete from "./ConfirmDelete";
+import Username from "./Reusable/Username";
+import CreatedAt from "./Reusable/CreatedAt";
+import DeleteButton from "./Reusable/Buttons/TextButtons/DeleteButton";
+import EditButton from "./Reusable/Buttons/TextButtons/EditButton";
+import ReplyText from "./Reusable/Reply/ReplyText";
+import UpdateReplyButton from "./Reusable/Buttons/BgButtons/UpdateReplyButton";
+import EditableReplyField from "./Reusable/Reply/EditableReplyField";
 
 const OwnReply = ({ onContent, onCount, onTar, onDel, comId }) => {
   const { IMGOBJ } = useContext(CommentContext);
@@ -29,6 +26,11 @@ const OwnReply = ({ onContent, onCount, onTar, onDel, comId }) => {
 
   const handleClose = () => {
     setOpenModal(false);
+  };
+
+  const handleEdit = () => {
+    setClicked(!clicked);
+    setEditingRep(!editingRep);
   };
 
   return (
@@ -54,101 +56,34 @@ const OwnReply = ({ onContent, onCount, onTar, onDel, comId }) => {
               >
                 <Stack spacing={2} direction="row" alignItems="center">
                   <Avatar src={prsAva}></Avatar>
-                  <Typography
-                    fontWeight="bold"
-                    sx={{ color: "neutral.darkBlue" }}
-                  >
-                    juliusomo
-                  </Typography>
-                  <YouTag />
-                  <Typography sx={{ color: "neutral.grayishBlue" }}>
-                    Just now
-                  </Typography>
+                  <Username userName="juliusomo" />
+                  <CreatedAt createdAt="Just now" />
                 </Stack>
                 <Stack direction="row" spacing={1}>
-                  <Button
-                    startIcon={<Delete />}
-                    sx={{
-                      color: "custom.softRed",
-                      fontWeight: 500,
-                      textTransform: "capitalize",
-                    }}
-                    onClick={() => {
-                      handleOpen();
-                    }}
-                  >
-                    Delete
-                  </Button>
-                  <Button
-                    variant="text"
-                    disabled={clicked}
-                    sx={{
-                      fontWeight: 500,
-                      textTransform: "capitalize",
-                      color: "custom.moderateBlue",
-                    }}
-                    startIcon={<Edit />}
-                    onClick={() => {
-                      setClicked(!clicked);
-                      setEditingRep(!editingRep);
-                    }}
-                  >
-                    Edit
-                  </Button>
+                  <DeleteButton functionality={() => handleOpen()} />
+                  <EditButton
+                    editingComm={clicked}
+                    functionality={handleEdit}
+                  />
                 </Stack>
               </Stack>
               {editingRep ? (
                 <>
-                  <TextField
-                    sx={{ p: "20px 0" }}
-                    multiline
-                    fullWidth
-                    minRows={4}
-                    id="outlined-multilined"
-                    placeholder="Don't leave this blank!"
-                    value={repText}
-                    onChange={(e) => {
-                      setRepText(e.target.value);
-                    }}
+                  <EditableReplyField
+                    repText={repText}
+                    setText={setRepText}
+                    placeHolder="Don't leave this blank!"
                   />
-                  <Button
-                    sx={{
-                      bgcolor: "custom.moderateBlue",
-                      color: "neutral.white",
-                      p: "8px 25px",
-                      float: "right",
-                      "&:hover": {
-                        bgcolor: "custom.lightGrayishBlue",
-                      },
-                    }}
-                    onClick={() => {
-                      !repText.trim()
-                        ? alert("Read the placeholder.")
-                        : setEditingRep(!editingRep);
-                      setClicked(!clicked);
-                      console.log("check if it works");
-                    }}
-                  >
-                    Update
-                  </Button>
+                  <UpdateReplyButton
+                    clicked={clicked}
+                    editingRep={editingRep}
+                    repText={repText}
+                    setClicked={setClicked}
+                    setEditingRep={setEditingRep}
+                  />
                 </>
               ) : (
-                <Typography
-                  component="div"
-                  sx={{ color: "neutral.grayishBlue", p: "20px 0" }}
-                >
-                  <Typography
-                    sx={{
-                      color: "custom.moderateBlue",
-                      width: "fit-content",
-                      display: "inline-block",
-                      fontWeight: 500,
-                    }}
-                  >
-                    {`@${onTar}`}
-                  </Typography>{" "}
-                  {repText}
-                </Typography>
+                <ReplyText onTar={onTar} repText={repText} />
               )}
             </Box>
           </Stack>
